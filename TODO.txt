@@ -1,0 +1,4 @@
+1 - "Pending goals  : todos ps goals cadastrados mas
+ sem estarem na tabela completions,"
+
+2 - goals perday
