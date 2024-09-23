@@ -8,6 +8,7 @@ import CreateGoal from './components/create-goal'
 // import { useQuery } from '@tanstack/react-query'
 // import { getSummary } from './http/get-summary'
 import { useEffect, useState } from 'react'
+import Summary from './components/sumary'
 
 // type SummaryResponse = {
 //   completion_obj: number
@@ -46,11 +47,7 @@ function App() {
     <>
       <Dialog>
         {summary?.completion_obj && summary.completion_obj > 0 ? (
-          // <Sumary />
-          <>
-            <p>Completions ola Total:___ {summary.completion_obj}</p>
-            <p>Goals Total: ___{summary.goals_tot}</p>
-          </>
+          <Summary sum={summary} />
         ) : (
           <EmptyGoals />
         )}
