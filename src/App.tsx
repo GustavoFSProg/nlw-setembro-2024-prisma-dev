@@ -48,7 +48,7 @@ function App() {
         {summary?.completion_obj && summary.completion_obj > 0 ? (
           // <Sumary />
           <>
-            <p>Completions Total:___ {summary.completion_obj}</p>
+            <p>Completions ola Total:___ {summary.completion_obj}</p>
             <p>Goals Total: ___{summary.goals_tot}</p>
           </>
         ) : (
