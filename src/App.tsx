@@ -8,7 +8,8 @@ import CreateGoal from './components/create-goal'
 // import { useQuery } from '@tanstack/react-query'
 // import { getSummary } from './http/get-summary'
 import { useEffect, useState } from 'react'
-import Summary from './components/sumary'
+import Summary2 from './components/sumary2'
+// import Summary from './components/sumary'
 
 // type SummaryResponse = {
 //   completion_obj: number
@@ -34,7 +35,7 @@ function App() {
     const response = await fetch('http://localhost:3333/summary')
     //   const response = await fetch('https://in-orbit-nine.vercel.app/summary')
     const data = await response.json()
-    console.log(data)
+    // console.log(data)
     setSummary(data)
     return data
   }
@@ -47,7 +48,7 @@ function App() {
     <>
       <Dialog>
         {summary?.completion_obj && summary.completion_obj > 0 ? (
-          <Summary sum={summary} />
+          <Summary2 sum={summary} />
         ) : (
           <EmptyGoals />
         )}

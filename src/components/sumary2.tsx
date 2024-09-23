@@ -16,6 +16,7 @@ import ptBR from 'dayjs/locale/pt-br'
 //   ReactPortal,
 // } from 'react'
 import { PendingGoals } from './pending-goals'
+import { useState } from 'react'
 
 dayjs.locale(ptBR)
 
@@ -32,21 +33,54 @@ type SummaryResponse = {
   >
 }
 
-function Sumary() {
-  const { data } = useQuery<SummaryResponse | undefined>({
-    queryKey: ['summary'],
-    queryFn: getSummary,
-    staleTime: 1000 * 60, // 60 seconds
-  })
+function Summary2({ sum }) {
+  // const [compleated, setCompleated] = useState<any>(null)
+  const [summary, setSummary] = useState<any>(sum.completion_obj)
+  const [goals, setGoals] = useState<any>(sum?.goals_tot)
 
-  if (!data) {
-    return null
-  }
+  // function sumario() {}
+
+  console.log(`sum: ${sum.completion_obj}`)
+  // const { data } = useQuery<SummaryResponse | undefined>({
+  //   queryKey: ['summary'],
+  //   queryFn: getSummary,
+  //   staleTime: 1000 * 60, // 60 seconds
+  // })
+
+  // if (!data) {
+  //   return null
+  // }
+  // async function GetGoals() {
+  //   const response = await fetch('http://localhost:3333/get-goals')
+  //   //   const response = await fetch('https://in-orbit-nine.vercel.app/summary')
+  //   const data = await response.json()
+  //   console.log(data)
+  //   setSummary(data)
+  //   return data
+  // }
+
+  // async function Get() {
+  //   const response = await fetch('http://localhost:3333/get-goals-completions')
+  //   //   const response = await fetch('https://in-orbit-nine.vercel.app/summary')
+  //   const data = await response.json()
+  //   console.log(data)
+  //   setCompleated(data)
+  //   return data
+  // }
+
+  // useEffect(() => {
+  //   sumario()
+  // }, [])
+
+  console.log(` sum?.completion_obj: ${sum?.completion_obj}`)
+  console.log(` summary?.completion_obj: ${summary}`)
 
   const firstDayOfWeek = dayjs().startOf('week').format('D MMM')
   const lastDayOfWeek = dayjs().endOf('week').format('D MMM')
 
-  const completedPrecentage = Math.round((data?.completed * 100) / data?.total)
+  const completedPrecentage = Math.round(
+    (sum.completion_obj * 100) / sum?.goals_tot
+  )
 
   return (
     <>
@@ -103,9 +137,9 @@ function Sumary() {
             <div className="flex items-center justify-between text-xs text-zinc-400">
               <span>
                 Você completou
-                <span className="text-zinc-100 ml-1">{data?.completed}</span>{' '}
+                <span className="text-zinc-100 ml-1">{summary}</span>
                 das
-                <span className="text-zinc-100 ml-1 mr-1">{data?.total}</span>
+                <span className="text-zinc-100 ml-1 mr-1">{goals}</span>
                 metas da semana
               </span>
               <span>{completedPrecentage}%</span>
@@ -116,7 +150,7 @@ function Sumary() {
           <div className="flex flex-col pb-8 gap-6">
             <h2 className="text-xl font-medium">Sua Semana!</h2>
 
-            {Object.entries(data.goalsPerDay).map(([date, goals]: any) => {
+            {/* {Object.entries(data.goalsPerDay).map(([date, goals]: any) => {
               const weekDay = dayjs(date).format('dddd')
 
               const formatDate = dayjs(date).format('D[ de ]MMM')
@@ -170,7 +204,7 @@ function Sumary() {
                   </ul>
                 </div>
               )
-            })}
+            })} */}
           </div>
         </div>
       </div>
@@ -178,4 +212,4 @@ function Sumary() {
   )
 }
 
-export default Sumary
+export default Summary2
