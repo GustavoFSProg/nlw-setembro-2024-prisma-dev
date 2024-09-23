@@ -23,7 +23,7 @@ function Summary({ sum }) {
   return (
     <>
       <p>Completions ola Total:___ {sum.completion_obj}</p>
-      <p>Goals Total Summary: ___{sum.goals_tot}</p>
+      <p>Goals Total: ___{sum.goals_tot}</p>
     </>
   )
 }
